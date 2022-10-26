@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
 import Header from "../components/Header";
 import moment from "moment";
-import ProfileTabs from "../components/profileComponents/ProfileTabs";
-import Orders from "./../components/profileComponents/Orders";
+import ProfileTabs from "../components/ProfileComponents/ProfileTabs";
+import Orders from "../components/ProfileComponents/Orders";
 import {useDispatch, useSelector} from "react-redux";
 import {userDetail} from "../Redux/Actions/User/UserDetailActions";
 import {listOrder} from "../Redux/Actions/Order/OrderListActions";

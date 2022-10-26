@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 import Rating from "./Rating";
-import Pagination from "./pagination";
+import Pagination from "./Pagination";
 import {useDispatch, useSelector} from "react-redux";
 import {listProduct} from "../../Redux/Actions/Product/ProductListActions";
 import Loading from "../LoadingError/Loading";

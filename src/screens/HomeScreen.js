@@ -1,8 +1,8 @@
 import React from "react";
 import Header from "./../components/Header";
-import ShopSection from "./../components/homeComponents/ShopSection";
-import ContactInfo from "./../components/homeComponents/ContactInfo";
-import CalltoActionSection from "./../components/homeComponents/CalltoActionSection";
+import ShopSection from "../components/HomeComponents/ShopSection";
+import ContactInfo from "../components/HomeComponents/ContactInfo";
+import CallToActionSection from "../components/HomeComponents/CallToActionSection";
 import Footer from "./../components/Footer";
 
 const HomeScreen = ({match}) => {
@@ -12,7 +12,7 @@ const HomeScreen = ({match}) => {
     return (<div>
         <Header/>
         <ShopSection keyword={keyword} pagenumber={pagenumber}/>
-        <CalltoActionSection/>
+        <CallToActionSection/>
         <ContactInfo/>
         <Footer/>
     </div>);
