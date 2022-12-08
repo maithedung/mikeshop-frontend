@@ -23,7 +23,7 @@ const Login = ({location, history}) => {
         }
     }, [userInfo, history, redirect])
 
-    const submitHander = (e) => {
+    const submitHandler = (e) => {
         e.preventDefault()
         dispatch(login(email, password))
     }
@@ -33,7 +33,7 @@ const Login = ({location, history}) => {
         <div className="container d-flex flex-column justify-content-center align-items-center login-center">
             {error && <Message variant="alert-danger">{error}</Message>}
             {loading && <div className="mb-5"><Loading/></div>}
-            <form className="Login col-md-8 col-lg-4 col-11" onSubmit={submitHander}>
+            <form className="Login col-md-8 col-lg-4 col-11" onSubmit={submitHandler}>
                 <input type="email" placeholder="Email"
                        value={email}
                        onChange={(e) => setEmail(e.target.value)}/>

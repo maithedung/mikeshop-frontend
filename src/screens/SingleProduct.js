@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Header from "./../components/Header";
-import Rating from "../components/HomeComponents/Rating";
+import Rating from "../components/Home/Rating";
 import {Link} from "react-router-dom";
 import Message from "./../components/LoadingError/Error";
 import {useDispatch, useSelector} from "react-redux";

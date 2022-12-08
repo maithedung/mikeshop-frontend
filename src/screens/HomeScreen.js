@@ -1,17 +1,17 @@
 import React from "react";
 import Header from "./../components/Header";
-import ShopSection from "../components/HomeComponents/ShopSection";
-import ContactInfo from "../components/HomeComponents/ContactInfo";
-import CallToActionSection from "../components/HomeComponents/CallToActionSection";
+import ShopSection from "../components/Home/ShopSection";
+import ContactInfo from "../components/Home/ContactInfo";
+import CallToActionSection from "../components/Home/CallToActionSection";
 import Footer from "./../components/Footer";
 
 const HomeScreen = ({match}) => {
     window.scrollTo(0, 0);
     const keyword = match.params.keyword
-    const pagenumber=match.params.pagenumber
+    const pageNumber=match.params.pageNumber
     return (<div>
         <Header/>
-        <ShopSection keyword={keyword} pagenumber={pagenumber}/>
+        <ShopSection keyword={keyword} pageNumber={pageNumber}/>
         <CallToActionSection/>
         <ContactInfo/>
         <Footer/>

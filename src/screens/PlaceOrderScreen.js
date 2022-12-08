@@ -34,7 +34,7 @@ const PlaceOrderScreen = ({history}) => {
         }
     }, [history, dispatch, success, order])
 
-    const placeOrderHandler = (e) => {
+    const placeOrderHandler = () => {
         dispatch(createOrder({
             orderItems: cart.cartItems,
             shippingAddress: cart.shippingAddress,
@@ -54,7 +54,7 @@ const PlaceOrderScreen = ({history}) => {
                     <div className="row ">
                         <div className="col-md-4 center">
                             <div className="alert-success order-box">
-                                <i class="fas fa-user"></i>
+                                <i className="fas fa-user"></i>
                             </div>
                         </div>
                         <div className="col-md-8 center">

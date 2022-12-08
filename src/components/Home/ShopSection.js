@@ -10,20 +10,20 @@ import Message from "../LoadingError/Error";
 const ShopSection = (props) => {
     const dispatch = useDispatch()
 
-    const {keyword, pagenumber} = props
+    const {keyword, pageNumber} = props
 
     const productList = useSelector((state) => state.productList)
     const {loading, error, products, page, pages} = productList
 
     useEffect(() => {
-        dispatch(listProduct(keyword, pagenumber))
-    }, [dispatch, keyword, pagenumber])
+        dispatch(listProduct(keyword, pageNumber))
+    }, [dispatch, keyword, pageNumber])
     return (<>
         <div className="container">
             <div className="section">
                 <div className="row">
                     <div className="col-lg-12 col-md-12 article">
-                        <div className="shopcontainer row">
+                        <div className="shop-container row">
                             {loading ? (<div className="mb-5">
                                 <Loading/>
                             </div>) : error ? (<Message variant="alert-danger">{error}</Message>) : (<>
@@ -38,7 +38,7 @@ const ShopSection = (props) => {
                                             </div>
                                         </Link>
 
-                                        <div className="shoptext">
+                                        <div className="shop-text">
                                             <p>
                                                 <Link to={`/products/${product._id}`}>
                                                     {product.name}
