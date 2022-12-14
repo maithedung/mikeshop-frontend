@@ -31,7 +31,7 @@ span {
 input:focus,
 select:focus,
 textarea:focus {
-  outline: 0px;
+  outline: 0;
 }
 .row,
 .col-6,
@@ -41,7 +41,7 @@ textarea:focus {
 }
 .Announcement {
   background-color: #1cb803;
-  padding: 10px 0px 6px 0px;
+  padding: 10px 0 6px 0;
 }
 .Announcement .col-md-6 p {
   color: white;
@@ -55,7 +55,7 @@ textarea:focus {
 }
 /* Header */
 .header {
-  padding: 10px 0px 10px 0px;
+  padding: 10px 0 10px 0;
 }
 .navbar-brand img {
   width: 60%;
@@ -79,7 +79,7 @@ textarea:focus {
   position: relative;
 }
 .Login-Register a:nth-last-child(1) {
-  margin-right: 0rem;
+  margin-right: 0;
 }
 .badge {
   background-color: red;
@@ -172,13 +172,13 @@ textarea:focus {
   height: 250px;
   object-fit: contain;
 }
-.shoptext {
+.shop-text {
   padding-top: 10px;
 }
-.shoptext p a {
+.shop-text p a {
   color: #252525;
 }
-.shoptext h3 {
+.shop-text h3 {
   color: #252525;
   margin-top: 13px;
   font-weight: bold;
@@ -196,7 +196,7 @@ textarea:focus {
 }
 /* END OF SHOP */
 
-/* NEWSLATTER */
+/* NEWSLETTER */
 .subscribe-section {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.226), rgba(0, 0, 0, 0.226)),
     url("https://sasshoes-com.s3.us-west-2.amazonaws.com/img/banner-uplift-21.jpg")
@@ -258,7 +258,7 @@ textarea:focus {
   width: 80%;
   flex-direction: column;
   padding: 40px 0;
-  box-shadow: 0px 0px 27px 0px rgb(243, 243, 243);
+  box-shadow: 0 0 27px 0 rgb(243, 243, 243);
 }
 .info-image {
   width: 50px;
@@ -334,7 +334,7 @@ textarea:focus {
   width: 100px;
   height: 40px;
   text-align: center;
-  border: 0px;
+  border: 0;
   border-radius: 5px;
 }
 .round-black-btn {
@@ -376,7 +376,7 @@ textarea:focus {
   color: #8a8a8a;
 }
 .Login input:focus {
-  outline: 0px;
+  outline: 0;
 }
 .Login button,
 .Login2 button {
@@ -422,7 +422,7 @@ textarea:focus {
   object-fit: contain;
   border-radius: 100px;
   margin-top: -60%;
-  box-shadow: 0px 0px 27px 0px rgba(0, 0, 0, 0.377);
+  box-shadow: 0 0 27px 0 rgba(0, 0, 0, 0.377);
 }
 .wizard .nav button {
   padding: 15px 20px;
@@ -465,7 +465,7 @@ textarea:focus {
 }
 .form-container button {
   padding: 15px 0;
-  border: 0px;
+  border: 0;
   margin-top: 20px;
   text-transform: uppercase;
   font-size: 13px;
@@ -559,7 +559,7 @@ textarea:focus {
 .cart-buttons div button {
   width: 80%;
   padding: 15px 0;
-  border: 0px;
+  border: 0;
   text-transform: uppercase;
   font-size: 13px;
   background-color: #1cb803;
@@ -636,7 +636,7 @@ textarea:focus {
 .subtotal-order button {
   width: 100%;
   padding: 15px 0;
-  border: 0px;
+  border: 0;
   text-transform: uppercase;
   font-size: 13px;
   background-color: #1cb803;
