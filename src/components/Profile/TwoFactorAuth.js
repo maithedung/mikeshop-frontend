@@ -21,7 +21,7 @@ const TwoFactorAuth = (props) => {
     const [qrcodeUrl, setQrcodeUrl] = useState("");
     const [token, setToken] = useState("")
 
-    const toast2FA = React.useRef(null)
+    const toastId = React.useRef(null)
     const toastObject = {
         pauseOnFocusLoss: false, draggable: false, pauseOnExit: false, autoClose: 2000
     }
@@ -41,20 +41,22 @@ const TwoFactorAuth = (props) => {
         //    Token required
         if (token) {
             dispatch(verifyAuthOtp(user_id, token))
-            const {otp_enabled, otp_verified} = data
-            if (otp_enabled && otp_verified) {
-                if (!toast.isActive(toast2FA.current)) {
-                    toast2FA.current = toast.success("Two-Factor Auth Enabled Successfully", toastObject)
+            if (data) {
+                const {otp_enabled, otp_verified} = data
+                if (otp_enabled && otp_verified) {
+                    if (!toast.isActive(toastId.current)) {
+                        toastId.current = toast.success("Two-Factor Auth Enabled Successfully", toastObject)
+                    }
+                    closeModal();
                 }
-                closeModal();
             } else {
-                if (!toast.isActive(toast2FA.current)) {
-                    toast2FA.current = toast.warning("Authentication code is wrong!", toastObject)
+                if (!toast.isActive(toastId.current)) {
+                    toastId.current = toast.warning("Authentication code is wrong!", toastObject)
                 }
             }
         } else {
-            if (!toast.isActive(toast2FA.current)) {
-                toast2FA.current = toast.error("Authentication code is required", toastObject)
+            if (!toast.isActive(toastId.current)) {
+                toastId.current = toast.error("Authentication code is required", toastObject)
             }
         }
     };
