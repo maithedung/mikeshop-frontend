@@ -1,14 +1,14 @@
 import axios from "axios";
 import {URL} from "../../Url";
-import {logout} from "../User/UserLogoutActions";
 import {
-    AUTH_OTP_VERIFY_FAIL, AUTH_OTP_VERIFY_REQUEST, AUTH_OTP_VERIFY_SUCCESS
-} from "../../Constants/Auth/AuthOtpVerifyConstants";
+    AUTH_OTP_DISABLE_FAIL, AUTH_OTP_DISABLE_REQUEST, AUTH_OTP_DISABLE_SUCCESS
+} from "../../Constants/Auth/AuthOtpDisableConstants";
+import {logout} from "../User/UserLogoutActions";
 
-export const verifyAuthOtp = (userId, token) => async (dispatch, getState) => {
+export const disableAuthOtp = (userId) => async (dispatch, getState) => {
     try {
         dispatch({
-            type: AUTH_OTP_VERIFY_REQUEST
+            type: AUTH_OTP_DISABLE_REQUEST
         })
         const {
             userLogin: {userInfo}
@@ -20,11 +20,11 @@ export const verifyAuthOtp = (userId, token) => async (dispatch, getState) => {
             }
         }
 
-        const authData = {userId: userId, token: token}
+        const authData = {userId: userId}
 
-        const {data} = await axios.post(`${URL}/api/auth/otp/verify`, authData, config)
+        const {data} = await axios.post(`${URL}/api/auth/otp/disable`, authData, config)
         dispatch({
-            type: AUTH_OTP_VERIFY_SUCCESS, payload: data
+            type: AUTH_OTP_DISABLE_SUCCESS, payload: data
         })
         document.location.href = "/profile"
     } catch (error) {
@@ -33,7 +33,7 @@ export const verifyAuthOtp = (userId, token) => async (dispatch, getState) => {
             dispatch(logout())
         }
         dispatch({
-            type: AUTH_OTP_VERIFY_FAIL, payload: message
+            type: AUTH_OTP_DISABLE_FAIL, payload: message
         })
     }
 }

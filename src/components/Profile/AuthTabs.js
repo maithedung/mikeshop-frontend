@@ -5,13 +5,18 @@ import Message from "../LoadingError/Error";
 import Loading from "../LoadingError/Loading";
 import {toast} from "react-toastify";
 import TwoFactorAuth from "./TwoFactorAuth";
-import {generateAuthOtp} from "../../Redux/Actions/Auth/AuthOtpGenerateActions";
+import {disableAuthOtp} from "../../Redux/Actions/Auth/AuthOtpDisableActions";
 
 const AuthTabs = () => {
-    const [secret, setSecret] = useState({
-        otpauth_url: "", base32: "",
-    });
+    const dispatch = useDispatch()
+
+    const [secret, setSecret] = useState({});
     const [openModal, setOpenModal] = useState(false);
+
+    const toastId = React.useRef(null)
+    const toastObject = {
+        pauseOnFocusLoss: false, draggable: false, pauseOnExit: false, autoClose: 2000
+    }
 
     const userDetail = useSelector((state) => state.userDetail)
     const {loading, error, user} = userDetail
@@ -26,19 +31,28 @@ const AuthTabs = () => {
                     base32: data.base32, otpauth_url: data.otpauth_url,
                 })
             }
-            console.log(data)
         } catch (e) {
-
+            if (!toast.isActive(toastId.current)) {
+                toastId.current = toast.error(e.message, toastObject)
+            }
         }
     };
 
-    const disableTwoFactorAuth = (user_id) => {
-
+    const disableTwoFactorAuth = () => {
+        try {
+            dispatch(disableAuthOtp(user._id))
+            if (!toast.isActive(toastId.current)) {
+                toastId.current = toast.success("Two-Factor Auth Disabled Successfully", toastObject)
+            }
+        } catch (e) {
+            if (!toast.isActive(toastId.current)) {
+                toastId.current = toast.error(e.message, toastObject)
+            }
+        }
     };
 
     useEffect(() => {
-        console.log(user)
-    }, [data])
+    }, [dispatch])
     return (<>
         <Toast/>
         {error && <Message variant="alert-danger">{error}</Message>}
@@ -56,7 +70,7 @@ const AuthTabs = () => {
                     {user.otp_enabled ? (<button
                         type="button"
                         className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2"
-                        onClick={() => disableTwoFactorAuth(user._id)}
+                        onClick={() => disableTwoFactorAuth()}
                     >
                         Disable 2FA
                     </button>) : (<button

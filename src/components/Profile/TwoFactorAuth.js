@@ -3,6 +3,7 @@ import QRCode from "qrcode";
 import {toast} from "react-toastify";
 import {verifyAuthOtp} from "../../Redux/Actions/Auth/AuthOtpVerifyActions";
 import {useDispatch, useSelector} from "react-redux";
+import {logout} from "../../Redux/Actions/User/UserLogoutActions";
 
 const styles = {
     heading3: `text-xl font-semibold text-gray-900 p-4 border-b`,
@@ -32,7 +33,6 @@ const TwoFactorAuth = (props) => {
 
     useEffect(() => {
         QRCode.toDataURL(otpauth_url).then(setQrcodeUrl);
-        console.log(user_id)
     }, [dispatch, data])
 
     const submitHandler = (e) => {
@@ -41,7 +41,8 @@ const TwoFactorAuth = (props) => {
         //    Token required
         if (token) {
             dispatch(verifyAuthOtp(user_id, token))
-            if (data) {
+            const {otp_enabled, otp_verified} = data
+            if (otp_enabled && otp_verified) {
                 if (!toast.isActive(toast2FA.current)) {
                     toast2FA.current = toast.success("Two-Factor Auth Enabled Successfully", toastObject)
                 }
