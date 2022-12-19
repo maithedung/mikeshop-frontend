@@ -7,5 +7,5 @@ import {Widget} from "./widget/Widget";
 
 ReactDOM.render(<Provider store={store}>
     <App/>
-    <Widget/>
+    {/*<Widget/>*/}
 </Provider>, document.getElementById("root"));
