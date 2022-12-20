@@ -4,6 +4,7 @@ import {
     AUTH_OTP_DISABLE_FAIL, AUTH_OTP_DISABLE_REQUEST, AUTH_OTP_DISABLE_SUCCESS
 } from "../../Constants/Auth/AuthOtpDisableConstants";
 import {logout} from "../User/UserLogoutActions";
+import {USER_NOT_AUTHORIZED_ERROR} from "../../Messages";
 
 export const disableAuthOtp = (userId) => async (dispatch, getState) => {
     try {
@@ -29,7 +30,7 @@ export const disableAuthOtp = (userId) => async (dispatch, getState) => {
         document.location.href = "/profile"
     } catch (error) {
         const message = error.response && error.response.data.message ? error.response.data.message : error.message
-        if (message === "Not authorized. Token failed!") {
+        if (message === USER_NOT_AUTHORIZED_ERROR) {
             dispatch(logout())
         }
         dispatch({

@@ -14,9 +14,9 @@ export const listProduct = (keyword = "", pageNumber = "") => async (dispatch) =
             type: PRODUCT_LIST_SUCCESS, payload: data
         })
     } catch (error) {
+        const message = error.response && error.response.data.message ? error.response.data.message : error.message
         dispatch({
-            type: PRODUCT_LIST_FAIL,
-            payload: error.response && error.response.data.message ? error.response.data.message : error.message
+            type: PRODUCT_LIST_FAIL, payload: message
         })
     }
 }

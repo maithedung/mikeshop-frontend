@@ -2,6 +2,7 @@ import axios from "axios";
 import {logout} from "../User/UserLogoutActions";
 import {ORDER_PAY_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS} from "../../Constants/Order/OrderPayConstants";
 import {URL} from "../../Url";
+import {USER_NOT_AUTHORIZED_ERROR} from "../../Messages";
 
 export const payOrder = (orderId, paymentResult) => async (dispatch, getState) => {
     try {
@@ -24,7 +25,7 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
         })
     } catch (error) {
         const message = error.response && error.response.data.message ? error.response.data.message : error.message
-        if (message === "Not authorized. Token failed!") {
+        if (message === USER_NOT_AUTHORIZED_ERROR) {
             dispatch(logout())
         }
         dispatch({

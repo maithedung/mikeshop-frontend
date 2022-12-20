@@ -4,6 +4,7 @@ import {logout} from "../User/UserLogoutActions";
 import {
     AUTH_OTP_VERIFY_FAIL, AUTH_OTP_VERIFY_REQUEST, AUTH_OTP_VERIFY_SUCCESS
 } from "../../Constants/Auth/AuthOtpVerifyConstants";
+import {USER_NOT_AUTHORIZED_ERROR} from "../../Messages";
 
 export const verifyAuthOtp = (userId, token) => async (dispatch, getState) => {
     try {
@@ -29,7 +30,7 @@ export const verifyAuthOtp = (userId, token) => async (dispatch, getState) => {
         document.location.href = "/profile"
     } catch (error) {
         const message = error.response && error.response.data.message ? error.response.data.message : error.message
-        if (message === "Not authorized. Token failed!") {
+        if (message === USER_NOT_AUTHORIZED_ERROR) {
             dispatch(logout())
         }
         dispatch({
