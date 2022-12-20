@@ -4,6 +4,7 @@ import {
     REVIEW_CREATE_FAIL, REVIEW_CREATE_REQUEST, REVIEW_CREATE_SUCCESS
 } from "../../Constants/Review/ReviewCreateConstants";
 import {URL} from "../../Url";
+import {USER_NOT_AUTHORIZED_ERROR} from "../../Messages";
 
 export const createReview = (productId, review) => async (dispatch, getState) => {
     try {
@@ -26,7 +27,7 @@ export const createReview = (productId, review) => async (dispatch, getState) =>
         })
     } catch (error) {
         const message = error.response && error.response.data.message ? error.response.data.message : error.message
-        if (message === "Not authorized. Token failed!") {
+        if (message === USER_NOT_AUTHORIZED_ERROR) {
             dispatch(logout())
         }
         dispatch({
