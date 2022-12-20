@@ -17,6 +17,7 @@ import {reviewCreateReducer} from "./Reducers/Review/ReviewCreateReducers";
 import {authOtpGenerateReducer} from "./Reducers/Auth/AuthOtpGenerateReducers";
 import {authOtpVerifyReducer} from "./Reducers/Auth/AuthOtpVerifyReducers";
 import {authOtpDisableReducer} from "./Reducers/Auth/AuthOtpDisableReducers";
+import {authOtpValidateReducer} from "./Reducers/Auth/AuthOtpValidateReducers";
 
 const reducer = combineReducers({
     productList: productListReducer,
@@ -34,7 +35,8 @@ const reducer = combineReducers({
     reviewCreate: reviewCreateReducer,
     authOtpGenerate: authOtpGenerateReducer,
     authOtpVerify: authOtpVerifyReducer,
-    authOtpDisable: authOtpDisableReducer
+    authOtpDisable: authOtpDisableReducer,
+    authOtpValidate: authOtpValidateReducer
 })
 
 // CART
