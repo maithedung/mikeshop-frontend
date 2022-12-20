@@ -6,20 +6,25 @@ import {login} from "../Redux/Actions/User/UserLoginActions";
 import Message from "../components/LoadingError/Error";
 import Loading from "../components/LoadingError/Loading";
 
-const Login = ({location, history}) => {
+const LoginScreen = ({location, history}) => {
     window.scrollTo(0, 0);
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
     const dispatch = useDispatch()
     const redirect = location.search ? location.search.split("=")[1] : "/"
+    const validate2FA = '/validate'
 
     const userLogin = useSelector((state) => state.userLogin)
     const {error, loading, userInfo} = userLogin
 
     useEffect(() => {
         if (userInfo) {
-            history.push(redirect)
+            if (userInfo.otp_enabled && userInfo.otp_verified) {
+                history.push(validate2FA)
+            } else {
+                history.push(redirect)
+            }
         }
     }, [userInfo, history, redirect])
 
@@ -49,4 +54,4 @@ const Login = ({location, history}) => {
     </>);
 };
 
-export default Login;
+export default LoginScreen;
