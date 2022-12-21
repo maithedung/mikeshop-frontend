@@ -4,7 +4,7 @@ import "./responsive.css";
 import "react-toastify/dist/ReactToastify.css";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
-import SingleProduct from "./screens/SingleProduct";
+import ProductScreen from "./screens/ProductScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import CartScreen from "./screens/CartScreen";
@@ -24,7 +24,7 @@ const App = () => {
             <Route path="/search/:keyword" component={HomeScreen}/>
             <Route path="/search/:keyword/page/:pageNumber" component={HomeScreen}/>
             <Route path="/page/:pageNumber" component={HomeScreen}/>
-            <Route path="/products/:id" component={SingleProduct}/>
+            <Route path="/products/:id" component={ProductScreen}/>
             <Route path="/login" component={LoginScreen}/>
             <Route path="/register" component={RegisterScreen}/>
             <PrivateRouter path="/profile" component={ProfileScreen}/>

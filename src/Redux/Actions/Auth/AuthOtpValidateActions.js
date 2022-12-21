@@ -1,5 +1,5 @@
 import axios from "axios";
-import {AUTH_OTP_VALIDATE_URL, HOST} from "../../Url";
+import {AUTH_OTP_VALIDATE_URL} from "../../Url";
 import {logout} from "../User/UserLogoutActions";
 import {
     AUTH_OTP_VALIDATE_FAIL, AUTH_OTP_VALIDATE_REQUEST, AUTH_OTP_VALIDATE_SUCCESS

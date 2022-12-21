@@ -12,7 +12,7 @@ import {createReview} from "../Redux/Actions/Review/ReviewCreateActions";
 import {toast} from "react-toastify";
 import Toast from "../components/LoadingError/Toast";
 
-const SingleProduct = ({history, match}) => {
+const ProductScreen = ({history, match}) => {
     const dispatch = useDispatch()
 
     const [quantity, setQuantity] = useState(1)
@@ -56,7 +56,6 @@ const SingleProduct = ({history, match}) => {
         if (!toast.isActive(toastId.current)) {
             toastId.current = toast.success("Review submitted", toastObject)
         }
-
     }
     return (<>
         <Header/>
@@ -181,4 +180,4 @@ const SingleProduct = ({history, match}) => {
     </>);
 };
 
-export default SingleProduct;
+export default ProductScreen;

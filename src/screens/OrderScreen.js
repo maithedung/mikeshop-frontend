@@ -35,7 +35,7 @@ const OrderScreen = ({match}) => {
     }
 
     useEffect(() => {
-        const addPayPayScript = async () => {
+        const addPayPalScript = async () => {
             const {data: clientId} = await axios.get(`${HOST}/api/config/paypal`)
             const script = document.createElement("script")
             script.type = "text/javascript"
@@ -51,12 +51,11 @@ const OrderScreen = ({match}) => {
             dispatch(detailOrder(orderId))
         } else if (!order.isPaid) {
             if (!window.paypal) {
-                addPayPayScript()
+                addPayPalScript().then(r => console.log(r))
             } else {
                 setSdkReady(true)
             }
         }
-
     }, [dispatch, orderId, successPay, order])
 
     const successPaymentHandler = (paymentResult) => {
