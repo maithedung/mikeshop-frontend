@@ -1,5 +1,5 @@
 import axios from "axios";
-import {URL} from "../../Url";
+import {AUTH_OTP_VALIDATE_URL, HOST} from "../../Url";
 import {logout} from "../User/UserLogoutActions";
 import {
     AUTH_OTP_VALIDATE_FAIL, AUTH_OTP_VALIDATE_REQUEST, AUTH_OTP_VALIDATE_SUCCESS
@@ -23,7 +23,7 @@ export const validateAuthOtp = (userId, token) => async (dispatch, getState) => 
 
         const authData = {userId: userId, token: token}
 
-        const {data} = await axios.post(`${URL}/api/auth/otp/validate`, authData, config)
+        const {data} = await axios.post(AUTH_OTP_VALIDATE_URL, authData, config)
         dispatch({
             type: AUTH_OTP_VALIDATE_SUCCESS, payload: data
         })

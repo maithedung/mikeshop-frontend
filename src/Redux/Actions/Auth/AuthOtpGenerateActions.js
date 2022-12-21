@@ -1,5 +1,5 @@
 import axios from "axios";
-import {URL} from "../../Url";
+import {AUTH_OTP_GENERATE_URL} from "../../Url";
 import {
     AUTH_OTP_GENERATE_FAIL, AUTH_OTP_GENERATE_REQUEST, AUTH_OTP_GENERATE_SUCCESS
 } from "../../Constants/Auth/AuthOtpGenerateConstants";
@@ -23,7 +23,7 @@ export const generateAuthOtp = (userId, email) => async (dispatch, getState) => 
 
         const authData = {userId: userId, email: email}
 
-        const {data} = await axios.post(`${URL}/api/auth/otp/generate`, authData, config)
+        const {data} = await axios.post(AUTH_OTP_GENERATE_URL, authData, config)
         dispatch({
             type: AUTH_OTP_GENERATE_SUCCESS, payload: data
         })

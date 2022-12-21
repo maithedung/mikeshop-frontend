@@ -1,5 +1,5 @@
 import axios from "axios";
-import {URL} from "../../Url";
+import {AUTH_OTP_DISABLE_URL} from "../../Url";
 import {
     AUTH_OTP_DISABLE_FAIL, AUTH_OTP_DISABLE_REQUEST, AUTH_OTP_DISABLE_SUCCESS
 } from "../../Constants/Auth/AuthOtpDisableConstants";
@@ -23,7 +23,7 @@ export const disableAuthOtp = (userId) => async (dispatch, getState) => {
 
         const authData = {userId: userId}
 
-        const {data} = await axios.post(`${URL}/api/auth/otp/disable`, authData, config)
+        const {data} = await axios.post(AUTH_OTP_DISABLE_URL, authData, config)
         dispatch({
             type: AUTH_OTP_DISABLE_SUCCESS, payload: data
         })

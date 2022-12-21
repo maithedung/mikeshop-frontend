@@ -1,5 +1,5 @@
 import axios from "axios";
-import {URL} from "../../Url";
+import {AUTH_OTP_VERIFY_URL} from "../../Url";
 import {logout} from "../User/UserLogoutActions";
 import {
     AUTH_OTP_VERIFY_FAIL, AUTH_OTP_VERIFY_REQUEST, AUTH_OTP_VERIFY_SUCCESS
@@ -23,7 +23,7 @@ export const verifyAuthOtp = (userId, token) => async (dispatch, getState) => {
 
         const authData = {userId: userId, token: token}
 
-        const {data} = await axios.post(`${URL}/api/auth/otp/verify`, authData, config)
+        const {data} = await axios.post(AUTH_OTP_VERIFY_URL, authData, config)
         dispatch({
             type: AUTH_OTP_VERIFY_SUCCESS, payload: data
         })
