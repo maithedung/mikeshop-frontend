@@ -3,7 +3,7 @@ import {logout} from "../User/UserLogoutActions";
 import {
     REVIEW_CREATE_FAIL, REVIEW_CREATE_REQUEST, REVIEW_CREATE_SUCCESS
 } from "../../Constants/Review/ReviewCreateConstants";
-import {URL} from "../../Url";
+import {PRODUCT_URL} from "../../Url";
 import {USER_NOT_AUTHORIZED_ERROR} from "../../Messages";
 
 export const createReview = (productId, review) => async (dispatch, getState) => {
@@ -21,7 +21,7 @@ export const createReview = (productId, review) => async (dispatch, getState) =>
             }
         }
 
-        await axios.post(`${URL}/api/products/${productId}/review`, review, config)
+        await axios.post(`${PRODUCT_URL}/${productId}/review`, review, config)
         dispatch({
             type: REVIEW_CREATE_SUCCESS
         })
