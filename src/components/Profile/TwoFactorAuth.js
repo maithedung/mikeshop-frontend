@@ -58,7 +58,7 @@ const TwoFactorAuth = (props) => {
 
     useEffect(() => {
         QRCode.toDataURL(otpauth_url).then(setQrcodeUrl);
-    }, [dispatch, data])
+    }, [dispatch, data, otpauth_url])
 
     return (<div
         aria-hidden={true}

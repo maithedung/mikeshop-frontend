@@ -13,25 +13,20 @@ const LoginScreen = ({location, history}) => {
 
     const dispatch = useDispatch()
     const redirect = location.search ? location.search.split("=")[1] : "/"
-    const validate2FA = '/validate'
 
     const userLogin = useSelector((state) => state.userLogin)
     const {error, loading, userInfo} = userLogin
-
-    useEffect(() => {
-        if (userInfo) {
-            if (userInfo.otp_enabled && userInfo.otp_verified) {
-                history.push(validate2FA)
-            } else {
-                history.push(redirect)
-            }
-        }
-    }, [userInfo, history, redirect])
 
     const submitHandler = (e) => {
         e.preventDefault()
         dispatch(login(email, password))
     }
+
+    useEffect(() => {
+        if (userInfo) {
+            history.push(redirect)
+        }
+    }, [userInfo, history, redirect])
 
     return (<>
         <Header/>
