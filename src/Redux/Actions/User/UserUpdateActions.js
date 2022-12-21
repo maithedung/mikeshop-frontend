@@ -2,7 +2,7 @@ import axios from "axios";
 import {USER_UPDATE_FAIL, USER_UPDATE_REQUEST, USER_UPDATE_SUCCESS} from "../../Constants/User/UserUpdateConstants";
 import {USER_LOGIN_SUCCESS} from "../../Constants/User/UserLoginConstants";
 import {logout} from "./UserLogoutActions";
-import {URL} from "../../Url";
+import {USER_PROFILE_URL} from "../../Url";
 import {USER_NOT_AUTHORIZED_ERROR} from "../../Messages";
 
 export const updateUserProfile = (user) => async (dispatch, getState) => {
@@ -20,7 +20,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
             }
         }
 
-        const {data} = await axios.put(`${URL}/api/users/profile`, user, config)
+        const {data} = await axios.put(USER_PROFILE_URL, user, config)
         dispatch({
             type: USER_UPDATE_SUCCESS, payload: data
         })

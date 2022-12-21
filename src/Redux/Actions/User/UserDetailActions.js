@@ -1,7 +1,7 @@
 import axios from "axios";
 import {USER_DETAIL_FAIL, USER_DETAIL_REQUEST, USER_DETAIL_SUCCESS} from "../../Constants/User/UserDetailConstants";
 import {logout} from "./UserLogoutActions";
-import {URL} from "../../Url";
+import {USER_PROFILE_URL} from "../../Url";
 import {USER_NOT_AUTHORIZED_ERROR} from "../../Messages";
 
 export const userDetail = () => async (dispatch, getState) => {
@@ -19,7 +19,7 @@ export const userDetail = () => async (dispatch, getState) => {
             }
         }
 
-        const {data} = await axios.get(`${URL}/api/users/profile`, config)
+        const {data} = await axios.get(USER_PROFILE_URL, config)
         dispatch({
             type: USER_DETAIL_SUCCESS, payload: data
         })

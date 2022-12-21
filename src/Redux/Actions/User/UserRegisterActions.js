@@ -3,7 +3,7 @@ import {
     USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS
 } from "../../Constants/User/UserRegisterConstants";
 import {USER_LOGIN_SUCCESS} from "../../Constants/User/UserLoginConstants";
-import {URL} from "../../Url";
+import {REGISTER_URL} from "../../Url";
 
 export const register = (name, email, password) => async (dispatch) => {
     try {
@@ -15,7 +15,7 @@ export const register = (name, email, password) => async (dispatch) => {
                 "Content-Type": "application/json"
             }
         }
-        const {data} = await axios.post(`${URL}/api/users/register`, {name, email, password}, config)
+        const {data} = await axios.post(REGISTER_URL, {name, email, password}, config)
         dispatch({
             type: USER_REGISTER_SUCCESS, payload: data
         })

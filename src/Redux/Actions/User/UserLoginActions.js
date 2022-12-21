@@ -1,6 +1,6 @@
 import axios from "axios";
 import {USER_LOGIN_FAIL, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS} from "../../Constants/User/UserLoginConstants";
-import {URL} from "../../Url";
+import {LOGIN_URL} from "../../Url";
 
 export const login = (email, password) => async (dispatch) => {
     try {
@@ -15,7 +15,7 @@ export const login = (email, password) => async (dispatch) => {
 
         const loginData = {email, password}
 
-        const {data} = await axios.post(`${URL}/api/users/login`, loginData, config)
+        const {data} = await axios.post(LOGIN_URL, loginData, config)
         dispatch({
             type: USER_LOGIN_SUCCESS, payload: data
         })
