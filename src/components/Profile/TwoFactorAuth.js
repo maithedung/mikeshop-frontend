@@ -3,7 +3,6 @@ import QRCode from "qrcode";
 import {toast} from "react-toastify";
 import {verifyAuthOtp} from "../../Redux/Actions/Auth/AuthOtpVerifyActions";
 import {useDispatch, useSelector} from "react-redux";
-import {logout} from "../../Redux/Actions/User/UserLogoutActions";
 
 const styles = {
     heading3: `text-xl font-semibold text-gray-900 p-4 border-b`,
@@ -31,10 +30,6 @@ const TwoFactorAuth = (props) => {
 
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        QRCode.toDataURL(otpauth_url).then(setQrcodeUrl);
-    }, [dispatch, data])
-
     const submitHandler = (e) => {
         e.preventDefault()
 
@@ -60,6 +55,10 @@ const TwoFactorAuth = (props) => {
             }
         }
     };
+
+    useEffect(() => {
+        QRCode.toDataURL(otpauth_url).then(setQrcodeUrl);
+    }, [dispatch, data])
 
     return (<div
         aria-hidden={true}
