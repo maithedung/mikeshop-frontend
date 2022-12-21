@@ -14,6 +14,10 @@ import {orderDetailReducer} from "./Reducers/Order/OderDetailReducers";
 import {orderPayReducer} from "./Reducers/Order/OrderPayReducers";
 import {orderListReducer} from "./Reducers/Order/OrderListReducers";
 import {reviewCreateReducer} from "./Reducers/Review/ReviewCreateReducers";
+import {authOtpGenerateReducer} from "./Reducers/Auth/AuthOtpGenerateReducers";
+import {authOtpVerifyReducer} from "./Reducers/Auth/AuthOtpVerifyReducers";
+import {authOtpDisableReducer} from "./Reducers/Auth/AuthOtpDisableReducers";
+import {authOtpValidateReducer} from "./Reducers/Auth/AuthOtpValidateReducers";
 
 const reducer = combineReducers({
     productList: productListReducer,
@@ -28,7 +32,11 @@ const reducer = combineReducers({
     orderDetail: orderDetailReducer,
     orderPay: orderPayReducer,
     orderList: orderListReducer,
-    reviewCreate: reviewCreateReducer
+    reviewCreate: reviewCreateReducer,
+    authOtpGenerate: authOtpGenerateReducer,
+    authOtpVerify: authOtpVerifyReducer,
+    authOtpDisable: authOtpDisableReducer,
+    authOtpValidate: authOtpValidateReducer
 })
 
 // CART

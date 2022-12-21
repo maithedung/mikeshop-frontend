@@ -5,6 +5,7 @@ import {
 import {CART_CLEAR_ITEMS} from "../../Constants/Cart/CartConstants";
 import {logout} from "../User/UserLogoutActions";
 import {URL} from "../../Url";
+import {USER_NOT_AUTHORIZED_ERROR} from "../../Messages";
 
 export const createOrder = (order) => async (dispatch, getState) => {
     try {
@@ -32,7 +33,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
         localStorage.removeItem("cartItems")
     } catch (error) {
         const message = error.response && error.response.data.message ? error.response.data.message : error.message
-        if (message === "Not authorized. Token failed!") {
+        if (message === USER_NOT_AUTHORIZED_ERROR) {
             dispatch(logout())
         }
         dispatch({

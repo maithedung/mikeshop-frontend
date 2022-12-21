@@ -4,6 +4,7 @@ import {
     ORDER_DETAIL_FAIL, ORDER_DETAIL_REQUEST, ORDER_DETAIL_SUCCESS
 } from "../../Constants/Order/OrderDetailConstants";
 import {URL} from "../../Url";
+import {USER_NOT_AUTHORIZED_ERROR} from "../../Messages";
 
 export const detailOrder = (id) => async (dispatch, getState) => {
     try {
@@ -26,7 +27,7 @@ export const detailOrder = (id) => async (dispatch, getState) => {
         })
     } catch (error) {
         const message = error.response && error.response.data.message ? error.response.data.message : error.message
-        if (message === "Not authorized. Token failed!") {
+        if (message === USER_NOT_AUTHORIZED_ERROR) {
             dispatch(logout())
         }
         dispatch({

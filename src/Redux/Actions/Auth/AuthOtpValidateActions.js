@@ -1,13 +1,15 @@
 import axios from "axios";
-import {logout} from "../User/UserLogoutActions";
-import {ORDER_PAY_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS} from "../../Constants/Order/OrderPayConstants";
 import {URL} from "../../Url";
+import {logout} from "../User/UserLogoutActions";
+import {
+    AUTH_OTP_VALIDATE_FAIL, AUTH_OTP_VALIDATE_REQUEST, AUTH_OTP_VALIDATE_SUCCESS
+} from "../../Constants/Auth/AuthOtpValidateConstants";
 import {USER_NOT_AUTHORIZED_ERROR} from "../../Messages";
 
-export const payOrder = (orderId, paymentResult) => async (dispatch, getState) => {
+export const validateAuthOtp = (userId, token) => async (dispatch, getState) => {
     try {
         dispatch({
-            type: ORDER_PAY_REQUEST
+            type: AUTH_OTP_VALIDATE_REQUEST
         })
         const {
             userLogin: {userInfo}
@@ -19,9 +21,11 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
             }
         }
 
-        const {data} = await axios.put(`${URL}/api/orders/${orderId}/pay`, paymentResult, config)
+        const authData = {userId: userId, token: token}
+
+        const {data} = await axios.post(`${URL}/api/auth/otp/validate`, authData, config)
         dispatch({
-            type: ORDER_PAY_SUCCESS, payload: data
+            type: AUTH_OTP_VALIDATE_SUCCESS, payload: data
         })
     } catch (error) {
         const message = error.response && error.response.data.message ? error.response.data.message : error.message
@@ -29,7 +33,7 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
             dispatch(logout())
         }
         dispatch({
-            type: ORDER_PAY_FAIL, payload: message
+            type: AUTH_OTP_VALIDATE_FAIL, payload: message
         })
     }
 }

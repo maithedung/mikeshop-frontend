@@ -6,7 +6,7 @@ import {login} from "../Redux/Actions/User/UserLoginActions";
 import Message from "../components/LoadingError/Error";
 import Loading from "../components/LoadingError/Loading";
 
-const Login = ({location, history}) => {
+const LoginScreen = ({location, history}) => {
     window.scrollTo(0, 0);
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -17,16 +17,16 @@ const Login = ({location, history}) => {
     const userLogin = useSelector((state) => state.userLogin)
     const {error, loading, userInfo} = userLogin
 
+    const submitHandler = (e) => {
+        e.preventDefault()
+        dispatch(login(email, password))
+    }
+
     useEffect(() => {
         if (userInfo) {
             history.push(redirect)
         }
     }, [userInfo, history, redirect])
-
-    const submitHandler = (e) => {
-        e.preventDefault()
-        dispatch(login(email, password))
-    }
 
     return (<>
         <Header/>
@@ -49,4 +49,4 @@ const Login = ({location, history}) => {
     </>);
 };
 
-export default Login;
+export default LoginScreen;

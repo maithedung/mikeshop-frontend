@@ -15,7 +15,7 @@ export const register = (name, email, password) => async (dispatch) => {
                 "Content-Type": "application/json"
             }
         }
-        const {data} = await axios.post(`${URL}/api/users`, {name, email, password}, config)
+        const {data} = await axios.post(`${URL}/api/users/register`, {name, email, password}, config)
         dispatch({
             type: USER_REGISTER_SUCCESS, payload: data
         })
@@ -25,9 +25,9 @@ export const register = (name, email, password) => async (dispatch) => {
 
         localStorage.setItem("userInfo", JSON.stringify(data))
     } catch (error) {
+        const message = error.response && error.response.data.message ? error.response.data.message : error.message
         dispatch({
-            type: USER_REGISTER_FAIL,
-            payload: error.response && error.response.data.message ? error.response.data.message : error.message
+            type: USER_REGISTER_FAIL, payload: message
         })
     }
 }

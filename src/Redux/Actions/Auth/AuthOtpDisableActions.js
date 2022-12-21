@@ -1,13 +1,15 @@
 import axios from "axios";
-import {logout} from "../User/UserLogoutActions";
-import {ORDER_PAY_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS} from "../../Constants/Order/OrderPayConstants";
 import {URL} from "../../Url";
+import {
+    AUTH_OTP_DISABLE_FAIL, AUTH_OTP_DISABLE_REQUEST, AUTH_OTP_DISABLE_SUCCESS
+} from "../../Constants/Auth/AuthOtpDisableConstants";
+import {logout} from "../User/UserLogoutActions";
 import {USER_NOT_AUTHORIZED_ERROR} from "../../Messages";
 
-export const payOrder = (orderId, paymentResult) => async (dispatch, getState) => {
+export const disableAuthOtp = (userId) => async (dispatch, getState) => {
     try {
         dispatch({
-            type: ORDER_PAY_REQUEST
+            type: AUTH_OTP_DISABLE_REQUEST
         })
         const {
             userLogin: {userInfo}
@@ -19,17 +21,20 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
             }
         }
 
-        const {data} = await axios.put(`${URL}/api/orders/${orderId}/pay`, paymentResult, config)
+        const authData = {userId: userId}
+
+        const {data} = await axios.post(`${URL}/api/auth/otp/disable`, authData, config)
         dispatch({
-            type: ORDER_PAY_SUCCESS, payload: data
+            type: AUTH_OTP_DISABLE_SUCCESS, payload: data
         })
+        document.location.href = "/profile"
     } catch (error) {
         const message = error.response && error.response.data.message ? error.response.data.message : error.message
         if (message === USER_NOT_AUTHORIZED_ERROR) {
             dispatch(logout())
         }
         dispatch({
-            type: ORDER_PAY_FAIL, payload: message
+            type: AUTH_OTP_DISABLE_FAIL, payload: message
         })
     }
 }

@@ -6,7 +6,7 @@ import {register} from "../Redux/Actions/User/UserRegisterActions";
 import Message from "../components/LoadingError/Error";
 import Loading from "../components/LoadingError/Loading";
 
-const Register = ({location, history}) => {
+const RegisterScreen = ({location, history}) => {
     window.scrollTo(0, 0);
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
@@ -56,4 +56,4 @@ const Register = ({location, history}) => {
     </>);
 };
 
-export default Register;
+export default RegisterScreen;

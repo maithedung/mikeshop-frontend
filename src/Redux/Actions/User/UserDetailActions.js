@@ -2,6 +2,7 @@ import axios from "axios";
 import {USER_DETAIL_FAIL, USER_DETAIL_REQUEST, USER_DETAIL_SUCCESS} from "../../Constants/User/UserDetailConstants";
 import {logout} from "./UserLogoutActions";
 import {URL} from "../../Url";
+import {USER_NOT_AUTHORIZED_ERROR} from "../../Messages";
 
 export const userDetail = () => async (dispatch, getState) => {
     try {
@@ -24,7 +25,7 @@ export const userDetail = () => async (dispatch, getState) => {
         })
     } catch (error) {
         const message = error.response && error.response.data.message ? error.response.data.message : error.message
-        if (message === "Not authorized. Token failed!") {
+        if (message === USER_NOT_AUTHORIZED_ERROR) {
             dispatch(logout())
         }
         dispatch({
