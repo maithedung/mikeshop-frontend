@@ -4,7 +4,7 @@ import {
 } from "../../Constants/Order/OrderCreateConstants";
 import {CART_CLEAR_ITEMS} from "../../Constants/Cart/CartConstants";
 import {logout} from "../User/UserLogoutActions";
-import {URL} from "../../Url";
+import {ORDER_URL} from "../../Url";
 import {USER_NOT_AUTHORIZED_ERROR} from "../../Messages";
 
 export const createOrder = (order) => async (dispatch, getState) => {
@@ -22,7 +22,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
             }
         }
 
-        const {data} = await axios.post(`${URL}/api/orders`, order, config)
+        const {data} = await axios.post(ORDER_URL, order, config)
         dispatch({
             type: ORDER_CREATE_SUCCESS, payload: data
         })

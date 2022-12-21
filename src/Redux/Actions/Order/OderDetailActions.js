@@ -3,7 +3,7 @@ import {logout} from "../User/UserLogoutActions";
 import {
     ORDER_DETAIL_FAIL, ORDER_DETAIL_REQUEST, ORDER_DETAIL_SUCCESS
 } from "../../Constants/Order/OrderDetailConstants";
-import {URL} from "../../Url";
+import {ORDER_URL} from "../../Url";
 import {USER_NOT_AUTHORIZED_ERROR} from "../../Messages";
 
 export const detailOrder = (id) => async (dispatch, getState) => {
@@ -21,7 +21,7 @@ export const detailOrder = (id) => async (dispatch, getState) => {
             }
         }
 
-        const {data} = await axios.get(`${URL}/api/orders/${id}`, config)
+        const {data} = await axios.get(`${ORDER_URL}/${id}`, config)
         dispatch({
             type: ORDER_DETAIL_SUCCESS, payload: data
         })
