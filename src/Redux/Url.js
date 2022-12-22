@@ -8,3 +8,4 @@ export const PRODUCT_URL = `${HOST}/api/products`
 export const USER_PROFILE_URL = `${HOST}/api/users/profile`
 export const LOGIN_URL = `${HOST}/api/users/login`
 export const REGISTER_URL = `${HOST}/api/users/register`
+export const SEARCH_USER_URL=`${HOST}/api/users/search`

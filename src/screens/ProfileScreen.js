@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import Header from "../components/Header";
+import Header from "../components/Header/Header";
 import moment from "moment";
 import ProfileTabs from "../components/Profile/ProfileTabs";
 import Orders from "../components/Profile/Orders";
@@ -21,7 +21,7 @@ const ProfileScreen = () => {
         dispatch(listOrder())
         dispatch(userDetail())
         dispatch(generateAuthOtp(userInfo._id, userInfo.email))
-    }, [dispatch])
+    }, [dispatch, userInfo])
     return (<>
         <Header/>
         <div className="container mt-lg-5 mt-3">

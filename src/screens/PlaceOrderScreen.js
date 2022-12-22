@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
-import Header from "./../components/Header";
+import Header from "../components/Header/Header";
 import {useDispatch, useSelector} from "react-redux";
-import Message from "../components/LoadingError/Error";
+import Message from "../components/Error/Error";
 import {ORDER_CREATE_RESET} from "../Redux/Constants/Order/OrderCreateConstants";
 import {createOrder} from "../Redux/Actions/Order/OrderCreateActions";
 

@@ -1,6 +1,8 @@
-import {PRODUCT_DETAIL_FAIL, PRODUCT_DETAIL_REQUEST, PRODUCT_DETAIL_SUCCESS} from "../../Constants/Product/ProductDetailConstants";
+import {
+    PRODUCT_DETAIL_FAIL, PRODUCT_DETAIL_REQUEST, PRODUCT_DETAIL_SUCCESS
+} from "../../Constants/Product/ProductDetailConstants";
 
-export const productDetailReducer = (state = {product: {reviews:[]}}, action) => {
+export const productDetailReducer = (state = {product: {reviews: []}}, action) => {
     switch (action.type) {
         case PRODUCT_DETAIL_REQUEST:
             return {
@@ -8,7 +10,7 @@ export const productDetailReducer = (state = {product: {reviews:[]}}, action) =>
             }
         case PRODUCT_DETAIL_SUCCESS:
             return {
-                loading: false, product: action.payload
+                loading: false, success: true, product: action.payload
             }
         case PRODUCT_DETAIL_FAIL:
             return {

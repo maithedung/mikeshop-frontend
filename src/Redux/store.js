@@ -18,6 +18,11 @@ import {authOtpGenerateReducer} from "./Reducers/Auth/AuthOtpGenerateReducers";
 import {authOtpVerifyReducer} from "./Reducers/Auth/AuthOtpVerifyReducers";
 import {authOtpDisableReducer} from "./Reducers/Auth/AuthOtpDisableReducers";
 import {authOtpValidateReducer} from "./Reducers/Auth/AuthOtpValidateReducers";
+import {serachReducer} from "./Reducers/Chat/SearchingReducers";
+import {recentChatReducer} from "./Reducers/Chat/RecentChatReducers";
+import {chattingReducer} from "./Reducers/Chat/ChattingReducers";
+import {notyficationReducer} from "./Reducers/Notification/NotificationReducers";
+import {userSearchReducer} from "./Reducers/User/UserSearchReducers";
 
 const reducer = combineReducers({
     productList: productListReducer,
@@ -28,6 +33,7 @@ const reducer = combineReducers({
     userRegister: userRegisterReducer,
     userDetail: userDetailReducer,
     userUpdate: userUpdateReducer,
+    userSearch: userSearchReducer,
     orderCreate: orderCreateReducer,
     orderDetail: orderDetailReducer,
     orderPay: orderPayReducer,
@@ -36,15 +42,17 @@ const reducer = combineReducers({
     authOtpGenerate: authOtpGenerateReducer,
     authOtpVerify: authOtpVerifyReducer,
     authOtpDisable: authOtpDisableReducer,
-    authOtpValidate: authOtpValidateReducer
+    authOtpValidate: authOtpValidateReducer,
+    search: serachReducer,
+    recentChat: recentChatReducer,
+    chatting: chattingReducer,
+    notification: notyficationReducer,
 })
 
 // CART
 const cartItemsFromLocalStorage = localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : []
-
 // LOGIN
 const userInfoFromLocalStorage = localStorage.getItem("userInfo") ? JSON.parse(localStorage.getItem("userInfo")) : null
-
 // SHIPPING ADDRESS
 const shippingAddressFromLocalStorage = localStorage.getItem("shippingAddress") ? JSON.parse(localStorage.getItem("shippingAddress")) : {}
 

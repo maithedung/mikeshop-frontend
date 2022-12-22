@@ -1,6 +1,6 @@
 import React from "react";
-import Loading from "../LoadingError/Loading";
-import Message from "../LoadingError/Error";
+import Loading from "../Loading/Loading";
+import Message from "../Error/Error";
 import {Link} from "react-router-dom";
 import moment from "moment";
 

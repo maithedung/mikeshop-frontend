@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import Toast from "../LoadingError/Toast";
-import Message from "../LoadingError/Error";
-import Loading from "../LoadingError/Loading";
+import Toast from "../Toast/Toast";
+import Message from "../Error/Error";
+import Loading from "../Loading/Loading";
 import {toast} from "react-toastify";
 import TwoFactorAuth from "./TwoFactorAuth";
 import {disableAuthOtp} from "../../Redux/Actions/Auth/AuthOtpDisableActions";
@@ -10,13 +10,13 @@ import {disableAuthOtp} from "../../Redux/Actions/Auth/AuthOtpDisableActions";
 const AuthTabs = () => {
     const dispatch = useDispatch()
 
-    const [secret, setSecret] = useState({});
-    const [openModal, setOpenModal] = useState(false);
-
-    const toastId = React.useRef(null)
+    const toastId = useRef(null)
     const toastObject = {
         pauseOnFocusLoss: false, draggable: false, pauseOnExit: false, autoClose: 2000
     }
+
+    const [secret, setSecret] = useState({});
+    const [openModal, setOpenModal] = useState(false);
 
     const userDetail = useSelector((state) => state.userDetail)
     const {loading, error, user} = userDetail
@@ -39,6 +39,7 @@ const AuthTabs = () => {
     };
 
     const disableTwoFactorAuth = () => {
+        toastId.current = null
         try {
             dispatch(disableAuthOtp(user._id))
             if (!toast.isActive(toastId.current)) {
@@ -53,6 +54,7 @@ const AuthTabs = () => {
 
     useEffect(() => {
     }, [dispatch])
+
     return (<>
         <Toast/>
         {error && <Message variant="alert-danger">{error}</Message>}

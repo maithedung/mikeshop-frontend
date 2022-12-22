@@ -1,22 +1,23 @@
-import React, {useEffect, useState} from "react";
-import Header from "./../components/Header";
+import React, {useEffect, useRef, useState} from "react";
+import Header from "../components/Header/Header";
 import {useDispatch, useSelector} from "react-redux";
-import Message from "../components/LoadingError/Error";
-import Loading from "../components/LoadingError/Loading";
+import Message from "../components/Error/Error";
+import Loading from "../components/Loading/Loading";
 import {validateAuthOtp} from "../Redux/Actions/Auth/AuthOtpValidateActions";
 import {toast} from "react-toastify";
 
 const ValidateScreen = ({location, history}) => {
     window.scrollTo(0, 0);
-    const [token, setToken] = useState("")
 
-    const toastId = React.useRef(null)
+    const dispatch = useDispatch()
+    const toastId = useRef(null)
     const toastObject = {
         pauseOnFocusLoss: false, draggable: false, pauseOnExit: false, autoClose: 2000
     }
 
-    const dispatch = useDispatch()
     const redirect = location.search ? location.search.split("=")[1] : "/"
+
+    const [token, setToken] = useState("")
 
     const userLogin = useSelector((state) => state.userLogin)
     const {error, loading, userInfo} = userLogin

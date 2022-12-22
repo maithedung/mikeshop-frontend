@@ -1,25 +1,30 @@
-import React, {useEffect, useState} from "react";
-import Header from "./../components/Header";
+import React, {useEffect, useRef, useState} from "react";
+import Header from "../components/Header/Header";
 import Rating from "../components/Home/Rating";
 import {Link} from "react-router-dom";
-import Message from "./../components/LoadingError/Error";
+import Message from "../components/Error/Error";
 import {useDispatch, useSelector} from "react-redux";
 import {detailProduct} from "../Redux/Actions/Product/ProductDetailActions";
-import Loading from "../components/LoadingError/Loading";
+import Loading from "../components/Loading/Loading";
 import {REVIEW_CREATE_RESET} from "../Redux/Constants/Review/ReviewCreateConstants";
 import moment from "moment";
 import {createReview} from "../Redux/Actions/Review/ReviewCreateActions";
 import {toast} from "react-toastify";
-import Toast from "../components/LoadingError/Toast";
+import Toast from "../components/Toast/Toast";
 
 const ProductScreen = ({history, match}) => {
     const dispatch = useDispatch()
+
+    const productId = match.params.id
+    const toastId = useRef(null)
+    const toastObject = {
+        pauseOnFocusLoss: false, draggable: false, pauseOnExit: false, autoClose: 2000
+    }
 
     const [quantity, setQuantity] = useState(1)
     const [rating, setRating] = useState(0)
     const [comment, setComment] = useState("")
 
-    const productId = match.params.id
     const productDetail = useSelector((state) => state.productDetail)
     const {loading, error, product} = productDetail
     const userLogin = useSelector((state) => state.userLogin)
@@ -27,9 +32,19 @@ const ProductScreen = ({history, match}) => {
     const reviewCreate = useSelector((state) => state.reviewCreate)
     const {loading: loadingCreateReview, error: errorCreateReview, success: successCreateReview} = reviewCreate
 
-    const toastId = React.useRef(null)
-    const toastObject = {
-        pauseOnFocusLoss: false, draggable: false, pauseOnExit: false, autoClose: 2000
+    const AddToCartHandle = (e) => {
+        e.preventDefault()
+        history.push(`/cart/${productId}?quantity=${quantity}`)
+    }
+
+    const submitHandler = (e) => {
+        e.preventDefault()
+        if (!toast.isActive(toastId.current)) {
+            toastId.current = toast.success("Review submitted", toastObject)
+        }
+        dispatch(createReview(productId, {
+            rating, comment
+        }))
     }
 
     useEffect(() => {
@@ -41,22 +56,6 @@ const ProductScreen = ({history, match}) => {
         dispatch(detailProduct(productId))
     }, [dispatch, productId, successCreateReview])
 
-    const AddToCartHandle = (e) => {
-        e.preventDefault()
-        history.push(`/cart/${productId}?quantity=${quantity}`)
-    }
-
-    const submitHandler = (e) => {
-        e.preventDefault()
-
-        //    Create review
-        dispatch(createReview(productId, {
-            rating, comment
-        }))
-        if (!toast.isActive(toastId.current)) {
-            toastId.current = toast.success("Review submitted", toastObject)
-        }
-    }
     return (<>
         <Header/>
         <div className="container single-product">
@@ -139,7 +138,8 @@ const ProductScreen = ({history, match}) => {
                                     <strong>Rating</strong>
                                     <select className="col-12 bg-light p-3 mt-2 border-0 rounded"
                                             value={rating}
-                                            onChange={(e) => setRating(e.target.value)}>
+                                            onChange={(e) => setRating(e.target.value)}
+                                            required>
                                         <option value="">Select...</option>
                                         <option value="1">1 - Poor</option>
                                         <option value="2">2 - Fair</option>
@@ -155,6 +155,7 @@ const ProductScreen = ({history, match}) => {
                                         className="col-12 bg-light p-3 mt-2 border-0 rounded"
                                         value={comment}
                                         onChange={(e) => setComment(e.target.value)}
+                                        required
                                     ></textarea>
                                 </div>
                                 <div className="my-3">

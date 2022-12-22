@@ -8,7 +8,7 @@ export const orderDetailReducer = (state = {loading: true, orderItems: [], shipp
             }
         case ORDER_DETAIL_SUCCESS:
             return {
-                loading: false, order: action.payload
+                loading: false, success: true, order: action.payload
             }
         case ORDER_DETAIL_FAIL:
             return {
