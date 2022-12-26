@@ -1,13 +1,16 @@
-import React, {StrictMode} from "react";
-import {render} from "react-dom";
+import React, { StrictMode } from "react";
+import { render } from "react-dom";
 import App from "./App";
-import {Provider} from "react-redux";
+import { Provider } from "react-redux";
 import store from "./Redux/store";
 // import {Widget} from "./widget/Widget";
 
-render(<StrictMode>
+render(
+  <StrictMode>
     <Provider store={store}>
-        <App/>
-        {/*<Widget/>*/}
+      <App />
+      {/*<Widget/>*/}
     </Provider>
-</StrictMode>, document.getElementById("root"));
+  </StrictMode>,
+  document.getElementById("root")
+);
