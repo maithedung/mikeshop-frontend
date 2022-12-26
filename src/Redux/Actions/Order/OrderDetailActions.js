@@ -11,17 +11,17 @@ export const detailOrder = (id) => async (dispatch, getState) => {
         dispatch({
             type: ORDER_DETAIL_REQUEST
         })
+
         const {
             userLogin: {userInfo}
         } = getState()
-
         const config = {
             headers: {
                 "Authorization": `Bearer ${userInfo.token}`
             }
         }
-
         const {data} = await axios.get(`${ORDER_URL}/${id}`, config)
+
         dispatch({
             type: ORDER_DETAIL_SUCCESS, payload: data
         })
@@ -30,6 +30,7 @@ export const detailOrder = (id) => async (dispatch, getState) => {
         if (message === USER_NOT_AUTHORIZED_ERROR) {
             dispatch(logout())
         }
+
         dispatch({
             type: ORDER_DETAIL_FAIL, payload: message
         })

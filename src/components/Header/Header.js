@@ -1,13 +1,14 @@
 import React, {useState} from "react";
 import {Link, useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {logout} from "../Redux/Actions/User/UserLogoutActions";
+import {logout} from "../../Redux/Actions/User/UserLogoutActions";
+import TopHeader from "./TopHeader";
 
 const Header = () => {
     const dispatch = useDispatch()
+    let history = useHistory()
 
     const [keyword, setKeyword] = useState()
-    let history = useHistory()
 
     const cart = useSelector((state) => state.cart)
     const {cartItems} = cart
@@ -29,34 +30,7 @@ const Header = () => {
 
     return (<div>
         {/* Top Header */}
-        <div className="Announcement ">
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-6 d-flex align-items-center display-none">
-                        <p>+84 93 250 2578</p>
-                        <p>mikeshop@gmail.com</p>
-                    </div>
-                    <div
-                        className=" col-12 col-lg-6 justify-content-center justify-content-lg-end d-flex align-items-center">
-                        <Link to="">
-                            <i className="fab fa-facebook-f"></i>
-                        </Link>
-                        <Link to="">
-                            <i className="fab fa-instagram"></i>
-                        </Link>
-                        <Link to="">
-                            <i className="fab fa-linkedin-in"></i>
-                        </Link>
-                        <Link to="">
-                            <i className="fab fa-youtube"></i>
-                        </Link>
-                        <Link to="">
-                            <i className="fab fa-pinterest-p"></i>
-                        </Link>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <TopHeader/>
         {/* Header */}
         <div className="header">
             <div className="container">
@@ -104,13 +78,16 @@ const Header = () => {
                                         <Link className="dropdown-item" to="/login">
                                             Login
                                         </Link>
-
                                         <Link className="dropdown-item" to="/register">
                                             Register
                                         </Link>
                                     </div>
                                 </div>)}
-                                <Link to="/cart" className="cart-mobile-icon">
+                                <Link to="/chatting" className="mobile-icon">
+                                    <i className="fas fa-comment"></i>
+                                    <span className="badge">{cartItems.length}</span>
+                                </Link>
+                                <Link to="/cart" className="mobile-icon">
                                     <i className="fas fa-shopping-bag"></i>
                                     <span className="badge">{cartItems.length}</span>
                                 </Link>
@@ -182,7 +159,10 @@ const Header = () => {
                                     Login
                                 </Link>
                             </>)}
-
+                            <Link to="/chatting">
+                                <i className="fas fa-comment"></i>
+                                <span className="badge">{cartItems.length}</span>
+                            </Link>
                             <Link to="/cart">
                                 <i className="fas fa-shopping-bag"></i>
                                 <span className="badge">{cartItems.length}</span>

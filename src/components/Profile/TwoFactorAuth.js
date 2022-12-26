@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import QRCode from "qrcode";
 import {toast} from "react-toastify";
 import {verifyAuthOtp} from "../../Redux/Actions/Auth/AuthOtpVerifyActions";
@@ -16,14 +16,14 @@ const styles = {
 };
 
 const TwoFactorAuth = (props) => {
-    const {otpauth_url, base32, user_id, closeModal} = props
-    const [qrcodeUrl, setQrcodeUrl] = useState("");
-    const [token, setToken] = useState("")
-
-    const toastId = React.useRef(null)
+    const toastId = useRef(null)
     const toastObject = {
         pauseOnFocusLoss: false, draggable: false, pauseOnExit: false, autoClose: 2000
     }
+
+    const {otpauth_url, base32, user_id, closeModal} = props
+    const [qrcodeUrl, setQrcodeUrl] = useState("");
+    const [token, setToken] = useState("")
 
     const authOtpVerify = useSelector((state) => state.authOtpVerify)
     const {data} = authOtpVerify
@@ -32,10 +32,11 @@ const TwoFactorAuth = (props) => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-
+        toastId.current = null
         //    Token required
         if (token) {
             dispatch(verifyAuthOtp(user_id, token))
+            console.log(data)
             if (data) {
                 const {otp_enabled, otp_verified} = data
                 if (otp_enabled && otp_verified) {
@@ -49,16 +50,12 @@ const TwoFactorAuth = (props) => {
                     toastId.current = toast.warning("Authentication code is wrong!", toastObject)
                 }
             }
-        } else {
-            if (!toast.isActive(toastId.current)) {
-                toastId.current = toast.error("Authentication code is required", toastObject)
-            }
         }
     };
 
     useEffect(() => {
         QRCode.toDataURL(otpauth_url).then(setQrcodeUrl);
-    }, [dispatch, data, otpauth_url])
+    }, [dispatch, otpauth_url])
 
     return (<div
         aria-hidden={true}
@@ -111,6 +108,7 @@ const TwoFactorAuth = (props) => {
                             type="number"
                             value={token}
                             onChange={(e) => setToken(e.target.value)}
+                            required
                         />
                         <p className="mt-2 text-xs text-red-600">
                             {/*{errors.token ? errors.token.message : null}*/}

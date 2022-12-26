@@ -1,18 +1,20 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import Header from "./../components/Header";
 import {useDispatch, useSelector} from "react-redux";
+import Header from "../components/Header/Header";
 import {login} from "../Redux/Actions/User/UserLoginActions";
-import Message from "../components/LoadingError/Error";
-import Loading from "../components/LoadingError/Loading";
+import Message from "../components/Error/Error";
+import Loading from "../components/Loading/Loading";
 
 const LoginScreen = ({location, history}) => {
     window.scrollTo(0, 0);
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
 
     const dispatch = useDispatch()
+
     const redirect = location.search ? location.search.split("=")[1] : "/"
+
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
 
     const userLogin = useSelector((state) => state.userLogin)
     const {error, loading, userInfo} = userLogin

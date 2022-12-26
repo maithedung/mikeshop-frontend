@@ -1,4 +1,6 @@
-import {USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS} from "../../Constants/User/UserRegisterConstants";
+import {
+    USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS
+} from "../../Constants/User/UserRegisterConstants";
 
 export const userRegisterReducer = (state = {}, action) => {
     switch (action.type) {
@@ -8,7 +10,7 @@ export const userRegisterReducer = (state = {}, action) => {
             }
         case USER_REGISTER_SUCCESS:
             return {
-                loading: false, userInfo: action.payload
+                loading: false, success: true, userInfo: action.payload
             }
         case USER_REGISTER_FAIL:
             return {

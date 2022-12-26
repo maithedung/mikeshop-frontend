@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import "./responsive.css";
 import "react-toastify/dist/ReactToastify.css";
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {BrowserRouter, Switch, Route} from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import LoginScreen from "./screens/LoginScreen";
@@ -16,9 +16,10 @@ import OrderScreen from "./screens/OrderScreen";
 import NotFound from "./screens/NotFound";
 import PrivateRouter from "./PrivateRouter";
 import ValidateScreen from "./screens/ValidateScreen";
+import ChattingScreen from "./screens/ChattingScreen";
 
 const App = () => {
-    return (<Router>
+    return (<BrowserRouter>
         <Switch>
             <Route path="/" component={HomeScreen} exact/>
             <Route path="/search/:keyword" component={HomeScreen}/>
@@ -34,9 +35,10 @@ const App = () => {
             <PrivateRouter path="/payment" component={PaymentScreen}/>
             <PrivateRouter path="/placeOrder" component={PlaceOrderScreen}/>
             <PrivateRouter path="/order/:id" component={OrderScreen}/>
+            <PrivateRouter path="/chatting" component={ChattingScreen}/>
             <Route path="*" component={NotFound}/>
         </Switch>
-    </Router>);
+    </BrowserRouter>);
 };
 
 export default App;
