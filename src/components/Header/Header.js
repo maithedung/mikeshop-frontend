@@ -162,7 +162,6 @@ const Header = () => {
                             </>)}
                             <a href={MIKE_CHAT}>
                                 <i className="fas fa-comment"></i>
-                                <span className="badge">{cartItems.length}</span>
                             </a>
                             <Link to="/cart">
                                 <i className="fas fa-shopping-bag"></i>
