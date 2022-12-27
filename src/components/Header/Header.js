@@ -3,6 +3,7 @@ import {Link, useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../../Redux/Actions/User/UserLogoutActions";
 import TopHeader from "./TopHeader";
+import {MIKE_CHAT} from "../../Redux/Url";
 
 const Header = () => {
     const dispatch = useDispatch()
@@ -83,10 +84,10 @@ const Header = () => {
                                         </Link>
                                     </div>
                                 </div>)}
-                                <Link to="/chatting" className="mobile-icon">
+                                <a href={MIKE_CHAT} className="mobile-icon">
                                     <i className="fas fa-comment"></i>
                                     <span className="badge">{cartItems.length}</span>
-                                </Link>
+                                </a>
                                 <Link to="/cart" className="mobile-icon">
                                     <i className="fas fa-shopping-bag"></i>
                                     <span className="badge">{cartItems.length}</span>
@@ -159,10 +160,10 @@ const Header = () => {
                                     Login
                                 </Link>
                             </>)}
-                            <Link to="/chatting">
+                            <a href={MIKE_CHAT}>
                                 <i className="fas fa-comment"></i>
                                 <span className="badge">{cartItems.length}</span>
-                            </Link>
+                            </a>
                             <Link to="/cart">
                                 <i className="fas fa-shopping-bag"></i>
                                 <span className="badge">{cartItems.length}</span>
